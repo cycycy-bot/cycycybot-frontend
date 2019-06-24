@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { Switch, Route } from 'react-router-dom';
+import ProtectedRoute  from './components/ProtectedRoute/ProtectedRoute';
+
+//CSS
 import './App.css';
+
+//components
+import Home from './components/Home/Home';
+import Dashboard from './components/Dashboard/Dashboard';
+import Mod from './components/Mod/Mod';
+import BanPhrase from './components/BanPhrase/BanPhrase';
+
+
+//apollo client setup
+const client = new ApolloClient({
+  uri: 'http://localhost:5000/graphql'
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <ProtectedRoute path='/dashboard' component={Dashboard} />
+          <ProtectedRoute path='/banphrase' component={BanPhrase} />
+          <ProtectedRoute path='/mod' component={Mod} />
+        </Switch>
+      </div>
+    </ApolloProvider>
   );
 }
 
