@@ -21,7 +21,7 @@ const getBanPhraseQuery = gql`
     }
 `;
 
-export { 
-    getModQuery,
-    getBanPhraseQuery
+export {
+  getModQuery,
+  getBanPhraseQuery,
 };
