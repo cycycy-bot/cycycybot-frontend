@@ -13,27 +13,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Mod from './components/Mod/Mod';
 import BanPhrase from './components/BanPhrase/BanPhrase';
 
-export const defaults = {
-  test: {
-    isTest: 'asdasd',
-    __typename: 'test',
-  },
-};
-
-export const resolvers = {
-  Mutation: {
-    setTrue: (_, params, { cache }) => {
-      const data = {
-        test: {
-          isTest: true,
-          __typename: 'test',
-        },
-      };
-      cache.writeData({ data });
-      return null;
-    },
-  },
-};
+// local state
+import { defaults, resolvers } from './state';
 
 // apollo client setup
 const client = new ApolloClient({
