@@ -27,6 +27,8 @@
         "no-unused-vars": 0,
         "no-console": 0,
         "linebreak-style": 0,
-        "import/prefer-default-export": 0
+        "import/prefer-default-export": 0,
+        "react-hooks/exhaustive-deps": 0,
+        "eslint-disable-next-line": 0
     }
 }

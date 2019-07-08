@@ -12,36 +12,43 @@ const Dashboard = (props) => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchUser = async () => {
-    setIsLoading(true);
-    const response = await fetch('https://discordapp.com/api/users/@me',
-      {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    const json = await response.json();
-    setUser(json);
-  };
+  const fetchUser = fetch('https://discordapp.com/api/users/@me',
+    {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => res.json());
+    // .then((json) => {
+    //   if (json.code === 0) {
+    //     return auth.logout(() => props.history.push('/'));
+    //   }
+    //   return setUser(json);
+    // })
+    // .catch(err => console.log(err));
 
-  const fetchServer = async () => {
-    const response = await fetch('https://discordapp.com/api/users/@me/guilds',
-      {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    const json = await response.json();
-    setIsLoading(false);
-  };
+
+  const fetchServer = fetch('https://discordapp.com/api/users/@me/guilds',
+    {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  // .then(res => setIsLoading(false));
 
   useEffect(() => {
-    fetchUser();
-    fetchServer();
+    Promise.all([fetchUser, fetchServer])
+      .then(([xy, server]) => {
+        if (xy.code === 0) {
+          return auth.logout(() => props.history.push('/'));
+        }
+        setUser(xy);
+        return setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -67,12 +74,17 @@ const Dashboard = (props) => {
               </QueryComp>
               <Mutation mutation={SET_TEST}>
                 {setTest => (
-                  <button onClick={setTest}> CLICK </button>
+                  <button onClick={() => {
+                    setTest({ variables: { test: 'testingtest' } });
+                  }}
+                  >
+                    CLICK
+                  </button>
                 )}
               </Mutation>
             </React.Fragment>
           )
-            }
+        }
     </div>
   );
 };
