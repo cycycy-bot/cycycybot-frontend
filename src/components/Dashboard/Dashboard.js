@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import { Mutation } from 'react-apollo';
+import Cookies from 'js-cookie';
 import auth from '../../auth';
 
 import QueryComp from '../QueryComponent/Query';
@@ -9,47 +9,20 @@ import { GET_TEST, SET_TEST } from '../../localQueries';
 const token = Cookies.get('token');
 
 const Dashboard = (props) => {
-  const [user, setUser] = useState({});
+  const { history } = props;
+  const [user, setUser] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchUser = fetch('https://discordapp.com/api/users/@me',
-    {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(res => res.json());
-    // .then((json) => {
-    //   if (json.code === 0) {
-    //     return auth.logout(() => props.history.push('/'));
-    //   }
-    //   return setUser(json);
-    // })
-    // .catch(err => console.log(err));
-
-
-  const fetchServer = fetch('https://discordapp.com/api/users/@me/guilds',
-    {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  // .then(res => setIsLoading(false));
-
   useEffect(() => {
-    Promise.all([fetchUser, fetchServer])
-      .then(([xy, server]) => {
-        if (xy.code === 0) {
-          return auth.logout(() => props.history.push('/'));
-        }
-        setUser(xy);
+    auth.isAuthenticated().then((users) => {
+      if (users.authenticated) {
+        setUser(users.user);
+        console.log(users);
         return setIsLoading(false);
-      });
-  }, []);
+      }
+      return auth.logout(() => history.push('/'));
+    });
+  }, [history]);
 
   return (
     <div>
@@ -82,6 +55,19 @@ const Dashboard = (props) => {
                   </button>
                 )}
               </Mutation>
+              <button onClick={() => {
+                fetch('http://localhost:5000/api/discord/getguilds', {
+                  method: 'post',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    token,
+                  }),
+                }).then(res => res.json())
+                  .then(console.log);
+              }}
+              >
+test
+              </button>
             </React.Fragment>
           )
         }
