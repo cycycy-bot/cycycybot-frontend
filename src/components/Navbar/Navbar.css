@@ -24,10 +24,15 @@
   align-items: center;
 }
 
-.toolbar .toolbar-nav .cycycy-bot-icon img {
+.toolbar .toolbar-nav .cycycy-bot-icon .avatar-img {
   height: 50px;
+  width:50px;
   margin: 0 0.8rem;
   border-radius: 50%;
+  background: #34383c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* dropdown */

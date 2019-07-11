@@ -15,19 +15,18 @@ const ProtectedRoute = withRouter(({ history, component: Component, ...rest }) =
   }, [history]);
 
   return (
-    <React.Fragment>
+    <>
       {
         isLoading
           ? <div>Loading...</div>
           : (
             <Route
               {...rest}
-              render={props => <Component {...props} />}
+              render={props => <Component {...rest} />}
             />
           )
       }
-
-    </React.Fragment>
+    </>
   );
 });
 export default ProtectedRoute;

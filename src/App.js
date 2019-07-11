@@ -6,13 +6,13 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 // components
-import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import Dashboard from './components/Dashboard/Dashboard';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 // import Mod from './components/Mod/Mod';
 // import BanPhrase from './components/BanPhrase/BanPhrase';
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <Navbar />

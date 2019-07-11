@@ -45,9 +45,14 @@ const Navbar = (props) => {
                           setDropDown({ variables: { isOpen: !data.dropDownOpen.isOpen } });
                         }}
                         className="toolbar-dropdown"
+                        role="button"
                       >
                         <div className="cycycy-bot-icon">
-                          <img src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} alt="avatar" />
+                          {
+                            user.avatar
+                              ? <img className="avatar-img" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} alt="avatar" />
+                              : <div className="avatar-img">{user.username.charAt(0).toUpperCase()}</div>
+                            }
                           <span className="user-tag">
                             {user.username}
                             {' '}

@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Mutation, Query } from 'react-apollo';
 import Cookies from 'js-cookie';
-import auth from '../../auth';
+import { NavLink } from 'react-router-dom';
 
-// local queries
-import {
-  SET_DROP_DOWN,
-  GET_DROP_DOWN,
-} from '../../localQueries';
+import './Dashboard.css';
+
+// components
+// import ServerComponent from './ServerComponent';
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const token = Cookies.get('token');
 
-
 const Dashboard = (props) => {
-  const user = auth.getUser();
-  const [isLoading, setIsLoading] = useState(false);
+  const [servers, setServers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchGuilds = () => {
+  const fetchServers = () => {
     fetch('http://localhost:5000/api/discord/getguilds', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -25,60 +23,41 @@ const Dashboard = (props) => {
       }),
     })
       .then(res => res.json())
-      .then(console.log);
+      .then((server) => {
+        setServers(server);
+        setIsLoading(false);
+      })
+      .catch(console.log);
   };
 
   useEffect(() => {
-    fetchGuilds();
+    fetchServers();
   }, []);
 
   return (
-    <div>
+    <div className="server-container">
       {
         isLoading
           ? <div>Loading...</div>
           : (
-            <React.Fragment>
-              <h1>Dashboard</h1>
-              <img src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} alt="avatar" />
-              <div>{user.username}</div>
-              <button onClick={() => {
-                auth.logout(() => {
-                  window.location.replace('/');
-                });
-              }}
-              >
-                Logout
-              </button>
-              <Mutation mutation={SET_DROP_DOWN}>
-                {setDropDown => (
-                  <button onClick={() => {
-                    setDropDown({ variables: { isOpen: true } });
-                  }}
-                  >
-                    CLICK
-                  </button>
-                )}
-              </Mutation>
-              <Query query={GET_DROP_DOWN}>
-                {({ data }) => <p>{data.dropDownOpen.isOpen ? 'true' : 'false'}</p>}
-              </Query>
-              <button onClick={() => {
-                fetch('http://localhost:5000/api/discord/getguilds', {
-                  method: 'post',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    token,
-                  }),
-                }).then(res => res.json())
-                  .then(console.log);
-              }}
-              >
-                test
-              </button>
-            </React.Fragment>
+            <div className="servers active">
+              {servers.map(server => (
+                <React.Fragment key={server.id}>
+                  <NavLink to={`${props.path}/${server.id}`}>
+                    <div className="guild">
+                      {
+                        server.icon
+                          ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png`} alt="avatar" />
+                          : <div className="server-img">{server.name.charAt(0).toUpperCase()}</div>
+                      }
+                      <span>{server.name}</span>
+                    </div>
+                  </NavLink>
+                </React.Fragment>
+              ))}
+            </div>
           )
-        }
+      }
     </div>
   );
 };

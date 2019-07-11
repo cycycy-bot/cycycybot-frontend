@@ -1,0 +1,42 @@
+.server-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+}
+
+.servers {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.servers .guild {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.3rem;
+  width: 150px;
+}
+
+.servers .guild .server-img {
+  height: 70px;
+  width: 70px;
+  margin: 0.8rem;
+  border-radius: 50%;
+  border: rgb(255,255,255) 2px solid;
+  background: #34383c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  visibility: visible;
+  opacity: 1;
+}

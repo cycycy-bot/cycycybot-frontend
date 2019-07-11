@@ -19,7 +19,8 @@ a {
 }
 
 .navbar-spacer {
-  margin-top: 80px;
+  padding-top: 80px;
+  min-height: 100vh;
 }
 
 .spacer {
