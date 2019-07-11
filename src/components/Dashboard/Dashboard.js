@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import Cookies from 'js-cookie';
 import auth from '../../auth';
 
-import QueryComp from '../QueryComponent/Query';
-import { GET_TEST, SET_TEST } from '../../localQueries';
+// local queries
+import {
+  SET_DROP_DOWN,
+  GET_DROP_DOWN,
+} from '../../localQueries';
 
 const token = Cookies.get('token');
 
+
 const Dashboard = (props) => {
-  const { history } = props;
-  const [user, setUser] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const user = auth.getUser();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchGuilds = () => {
+    fetch('http://localhost:5000/api/discord/getguilds', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token,
+      }),
+    })
+      .then(res => res.json())
+      .then(console.log);
+  };
 
   useEffect(() => {
-    auth.isAuthenticated().then((users) => {
-      if (users.authenticated) {
-        setUser(users.user);
-        console.log(users);
-        return setIsLoading(false);
-      }
-      return auth.logout(() => history.push('/'));
-    });
-  }, [history]);
+    fetchGuilds();
+  }, []);
 
   return (
     <div>
@@ -36,25 +44,25 @@ const Dashboard = (props) => {
               <div>{user.username}</div>
               <button onClick={() => {
                 auth.logout(() => {
-                  props.history.push('/');
+                  window.location.replace('/');
                 });
               }}
               >
                 Logout
               </button>
-              <QueryComp query={GET_TEST}>
-                {({ test }) => <p>{test.isTest}</p>}
-              </QueryComp>
-              <Mutation mutation={SET_TEST}>
-                {setTest => (
+              <Mutation mutation={SET_DROP_DOWN}>
+                {setDropDown => (
                   <button onClick={() => {
-                    setTest({ variables: { test: 'testingtest' } });
+                    setDropDown({ variables: { isOpen: true } });
                   }}
                   >
                     CLICK
                   </button>
                 )}
               </Mutation>
+              <Query query={GET_DROP_DOWN}>
+                {({ data }) => <p>{data.dropDownOpen.isOpen ? 'true' : 'false'}</p>}
+              </Query>
               <button onClick={() => {
                 fetch('http://localhost:5000/api/discord/getguilds', {
                   method: 'post',
@@ -66,7 +74,7 @@ const Dashboard = (props) => {
                   .then(console.log);
               }}
               >
-test
+                test
               </button>
             </React.Fragment>
           )

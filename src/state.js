@@ -3,6 +3,10 @@ export const defaults = {
     isTest: 'asdsdasdasda',
     __typename: 'test',
   },
+  dropDownOpen: {
+    isOpen: false,
+    __typename: 'dropDown',
+  },
 };
 
 export const resolvers = {
@@ -13,6 +17,16 @@ export const resolvers = {
         test: {
           isTest: d.test,
           __typename: 'test',
+        },
+      };
+      cache.writeData({ data });
+    },
+    setDropDown: (_, d, { cache }) => {
+      console.log(d);
+      const data = {
+        dropDownOpen: {
+          isOpen: d.isOpen,
+          __typename: 'dropDown',
         },
       };
       cache.writeData({ data });

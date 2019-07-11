@@ -1,20 +1,16 @@
 import Cookies from 'js-cookie';
 
-class Auth {
-  constructor() {
-    this.states = {
-      authenticated: false,
-      user: {},
-    };
-  }
-
+const Auth = {
+  states: {
+    isAuthenticated: false,
+    user: {},
+  },
   logout(cb) {
-    this.states.authenticated = false;
+    this.states.isAuthenticated = false;
     Cookies.remove('token');
     cb();
-  }
-
-  async isAuthenticated() {
+  },
+  async authenticate() {
     const token = Cookies.get('token');
     if (token) {
       const response = await fetch('https://discordapp.com/api/users/@me',
@@ -27,16 +23,23 @@ class Auth {
         });
       const json = await response.json();
       if (json.code === 0) {
-        this.states.authenticated = false;
-        return this.states.authenticated;
+        this.states.isAuthenticated = false;
+        return this.states.isAuthenticated;
       }
-      this.states.authenticated = true;
+      this.states.isAuthenticated = true;
       this.states.user = json;
+      console.log('yo');
       return this.states;
     }
-    this.states.authenticated = false;
-    return this.states.authenticated;
-  }
-}
+    this.states.isAuthenticated = false;
+    return this.states.isAuthenticated;
+  },
+  getAuth() {
+    return this.states.isAuthenticated;
+  },
+  getUser() {
+    return this.states.user;
+  },
+};
 
-export default new Auth();
+export default Auth;
