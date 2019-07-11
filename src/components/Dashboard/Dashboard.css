@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 }
 
 .servers {
@@ -15,7 +15,7 @@
   opacity: 0;
 }
 
-.servers .guild {
+.servers .server {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@
   width: 150px;
 }
 
-.servers .guild .server-img {
+.servers .server .server-img {
   height: 70px;
   width: 70px;
   margin: 0.8rem;

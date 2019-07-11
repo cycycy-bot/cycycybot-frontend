@@ -29,4 +29,5 @@ const ProtectedRoute = withRouter(({ history, component: Component, ...rest }) =
     </>
   );
 });
+
 export default ProtectedRoute;

@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 
 // components
-// import ServerComponent from './ServerComponent';
 // import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Loading from '../Loading';
 
 const token = Cookies.get('token');
 
-const Dashboard = (props) => {
+const Dashboard = ({ path }) => {
   const [servers, setServers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,8 +26,7 @@ const Dashboard = (props) => {
       .then((server) => {
         setServers(server);
         setIsLoading(false);
-      })
-      .catch(console.log);
+      });
   };
 
   useEffect(() => {
@@ -38,17 +37,17 @@ const Dashboard = (props) => {
     <div className="server-container">
       {
         isLoading
-          ? <div>Loading...</div>
+          ? <Loading />
           : (
             <div className="servers active">
               {servers.map(server => (
                 <React.Fragment key={server.id}>
-                  <NavLink to={`${props.path}/${server.id}`}>
-                    <div className="guild">
+                  <NavLink to={`${path}/${server.id}`}>
+                    <div className="server">
                       {
                         server.icon
                           ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png`} alt="avatar" />
-                          : <div className="server-img">{server.name.charAt(0).toUpperCase()}</div>
+                          : <div className="server-img">{server.name.charAt(0)}</div>
                       }
                       <span>{server.name}</span>
                     </div>

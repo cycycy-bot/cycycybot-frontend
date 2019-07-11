@@ -7,10 +7,6 @@ export const defaults = {
     isOpen: false,
     __typename: 'dropDown',
   },
-  guilds: {
-    guild: [],
-    __typename: 'getGuilds',
-  },
 };
 
 export const resolvers = {
@@ -30,16 +26,6 @@ export const resolvers = {
         dropDownOpen: {
           isOpen: d.isOpen,
           __typename: 'dropDown',
-        },
-      };
-      cache.writeData({ data });
-    },
-    setGuilds: (_, d, { cache }) => {
-      console.log(d.guild);
-      const data = {
-        guilds: {
-          guild: d.guild,
-          __typename: 'getGuilds',
         },
       };
       cache.writeData({ data });
