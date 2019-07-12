@@ -27,6 +27,7 @@ const Dashboard = ({ path }) => {
       .then((server) => {
         setServers(server);
         console.log('%c[cycycy bot] => ', 'color:green', 'Loaded servers: ', server);
+        console.log('');
         setIsLoading(false);
       });
   };
