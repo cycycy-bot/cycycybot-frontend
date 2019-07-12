@@ -1,0 +1,43 @@
+.headerDivider {
+  border-left:1px solid #202225; 
+  border-right:1px solid #202225; 
+  height:60px;
+  margin: 0 2rem;
+}
+
+/* header */
+
+.server-dashboard {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+.server-header {
+  padding: 0.5rem 0;
+  background: #2b2f33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.server-header .header-content {
+  width: 80%;
+}
+
+.server-header .header-content .header-title {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.server-header .server-img {
+  height: 50px;
+  width: 50px;
+  margin: 0.8rem;
+  border-radius: 50%;
+  border: rgb(255,255,255) 2px solid;
+  background: #34383c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

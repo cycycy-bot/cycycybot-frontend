@@ -9,7 +9,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-import Server from './components/Dashboard/ServerComponent';
+import ServerComponent from './components/ServerComponent/ServerComponent';
 // import Mod from './components/Mod/Mod';
 // import BanPhrase from './components/BanPhrase/BanPhrase';
 
@@ -20,7 +20,7 @@ function App() {
       <div className="navbar-spacer">
         <Switch>
           <Route exact path="/" component={Home} />
-          <ProtectedRoute path="/dashboard/:serverId" component={Server} />
+          <ProtectedRoute path="/dashboard/:serverId" component={ServerComponent} />
           <ProtectedRoute path="/dashboard" component={Dashboard} />
           {/* <ProtectedRoute path="/banphrase" component={BanPhrase} />
             <ProtectedRoute path="/mod" component={Mod} /> */}

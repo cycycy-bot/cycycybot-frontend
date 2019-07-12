@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 
+
 const Auth = {
   states: {
     isAuthenticated: false,
@@ -21,6 +22,7 @@ const Auth = {
             Authorization: `Bearer ${token}`,
           },
         });
+      console.log('%c[cycycy bot] => ', 'color:green;', 'Setting up user');
       const json = await response.json();
       if (json.code === 0) {
         this.states.isAuthenticated = false;
@@ -28,7 +30,7 @@ const Auth = {
       }
       this.states.isAuthenticated = true;
       this.states.user = json;
-      console.log('yo');
+      console.log('%c[cycycy bot] => ', 'color:green', `User: ${json.id}`);
       return this.states;
     }
     this.states.isAuthenticated = false;

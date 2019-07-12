@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
+// components
 import Loading from '../Loading';
+import ServerDashboard from './ServerDashboard';
 
 const token = Cookies.get('token');
 
@@ -12,6 +14,7 @@ const ServerComponent = ({ computedMatch }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchServer = () => {
+    console.log('%c[cycycy bot] => ', 'color:green', 'Fetching server');
     fetch(`http://localhost:5000/api/discord/getguilds/${serverId}`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -21,12 +24,14 @@ const ServerComponent = ({ computedMatch }) => {
     })
       .then(res => res.json())
       .then((serverRes) => {
+        console.log(serverRes);
         const { error } = serverRes;
         if (error) {
           setError(true);
           return setIsLoading(false);
         }
         setServer(serverRes);
+        console.log('%c[cycycy bot] => ', 'color:green', 'Fetched server: ', serverRes);
         return setIsLoading(false);
       });
   };
@@ -45,7 +50,7 @@ const ServerComponent = ({ computedMatch }) => {
               {
                 hasError
                   ? <div>error</div>
-                  : <div>{server.name}</div>
+                  : <ServerDashboard server={server} />
               }
             </>
           )
