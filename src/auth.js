@@ -13,7 +13,6 @@ const Auth = {
   },
   async authenticate() {
     const token = Cookies.get('token');
-    console.log(token);
     if (token) {
       const response = await fetch('https://discordapp.com/api/users/@me',
         {

@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .server-header .header-content {
@@ -26,13 +27,20 @@
 
 .server-header .header-content .header-title {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title .server-name {
+  display: flex;
+  flex-flow: column wrap;
   align-items: center;
 }
 
 .server-header .server-img {
   height: 50px;
-  width: 50px;
+  min-width: 50px;
   margin: 0.8rem;
   border-radius: 50%;
   border: rgb(255,255,255) 2px solid;
@@ -40,4 +48,58 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* header nav */
+.server-header-nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 100%;
+  flex: 1; 
+}
+
+.server-header-menu .menu-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.menu-list .menu-links {
+  margin: 0 2rem;
+  padding: 1rem;
+}
+
+.menu-links.active {
+  border-bottom: rgb(255,255,255) solid 3px;
+}
+
+.server-home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 0;
+}
+
+@media screen and (max-width: 900px) {
+  .server-header .header-content {
+    width: 100%;
+  }
+
+  .headerDivider {
+    margin: 0.5rem;
+  }
+
+  .server-header-nav {
+    justify-content: center;
+  }
+
+  .menu-list .menu-links {
+    margin: 0 0.5rem;
+    padding: 0;
+  }
+
+  .server-home-container .server-home-contents {
+    width: 100%;
+  }
 }

@@ -10,7 +10,7 @@ import Loading from '../Loading';
 
 const token = Cookies.get('token');
 
-const Dashboard = ({ path }) => {
+const Dashboard = ({ match: { path } }) => {
   const [servers, setServers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,31 +44,33 @@ const Dashboard = ({ path }) => {
           : (
             <div className="servers active">
               {
-                servers.map(server => (
-                  <React.Fragment key={server.id}>
+                servers.map(({
+                  id, bot, icon, name,
+                }) => (
+                  <React.Fragment key={id}>
                     {
-                      server.bot
+                      bot
                         ? (
-                          <NavLink to={`${path}/${server.id}`}>
+                          <NavLink to={`${path}/${id}`}>
                             <div className="server">
                               {
-                                server.icon
-                                  ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png`} alt="avatar" />
-                                  : <div className="server-img">{server.name.charAt(0)}</div>
+                                icon
+                                  ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${id}/${icon}.png`} alt="avatar" />
+                                  : <div className="server-img">{name.charAt(0)}</div>
                               }
-                              <span>{server.name}</span>
+                              <span>{name}</span>
                             </div>
                           </NavLink>
                         )
                         : (
-                          <a href={`https://discordapp.com/oauth2/authorize?scope=bot&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&permissions=1916267615&client_id=530305194131456000&guild_id=${server.id}`}>
+                          <a href={`https://discordapp.com/oauth2/authorize?scope=bot&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&permissions=1916267615&client_id=530305194131456000&guild_id=${id}`}>
                             <div className="server">
                               {
-                              server.icon
-                                ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png`} alt="avatar" />
-                                : <div className="server-img">{server.name.charAt(0)}</div>
-                            }
-                              <span>{server.name}</span>
+                                icon
+                                  ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${id}/${icon}.png`} alt="avatar" />
+                                  : <div className="server-img">{name.charAt(0)}</div>
+                              }
+                              <span>{name}</span>
                             </div>
                           </a>
                         )

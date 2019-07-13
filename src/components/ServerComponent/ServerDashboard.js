@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
 
 import './ServerDashboard.css';
 
-const ServerDashboard = ({ server: { name, id, icon } }) => {
-  const test = '';
+import ServerHome from './miniComponents/ServerHome';
+import Home from '../Home';
+
+const ServerDashboard = ({ match: { url }, server: { name, id, icon } }) => {
+  const [isSelected, setSelected] = useState(false);
 
   return (
     <div className="server-dashboard">
@@ -23,8 +26,26 @@ const ServerDashboard = ({ server: { name, id, icon } }) => {
               </NavLink>
             </div>
             <div className="headerDivider" />
+            <div className="server-header-nav">
+              <div className="server-header-menu">
+                <ul className="menu-list">
+                  <li>
+                    <NavLink exact activeClassName="active" className="menu-links" to={`${url}`}>home</NavLink>
+                  </li>
+                  <li>
+                    <NavLink activeClassName="active" className="menu-links" to={`${url}/settings`}>settings</NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      <div className="server-home-container">
+        <Switch>
+          <Route exact path={`${url}`} component={ServerHome} />
+          <Route path={`${url}/settings`} component={Home} />
+        </Switch>
       </div>
     </div>
   );

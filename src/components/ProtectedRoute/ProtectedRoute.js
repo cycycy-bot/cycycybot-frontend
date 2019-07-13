@@ -22,7 +22,7 @@ const ProtectedRoute = withRouter(({ history, component: Component, ...rest }) =
           : (
             <Route
               {...rest}
-              render={props => <Component {...rest} />}
+              render={props => <Component {...props} />}
             />
           )
       }

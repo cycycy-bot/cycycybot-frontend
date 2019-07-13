@@ -7,8 +7,7 @@ import ServerDashboard from './ServerDashboard';
 
 const token = Cookies.get('token');
 
-const ServerComponent = ({ computedMatch }) => {
-  const { serverId } = computedMatch.params;
+const ServerComponent = ({ match, match: { params: { serverId } } }) => {
   const [server, setServer] = useState({});
   const [hasError, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +23,6 @@ const ServerComponent = ({ computedMatch }) => {
     })
       .then(res => res.json())
       .then((serverRes) => {
-        console.log(serverRes);
         const { error } = serverRes;
         if (error) {
           setError(true);
@@ -50,7 +48,7 @@ const ServerComponent = ({ computedMatch }) => {
               {
                 hasError
                   ? <div>error</div>
-                  : <ServerDashboard server={server} />
+                  : <ServerDashboard server={server} match={match} />
               }
             </>
           )
