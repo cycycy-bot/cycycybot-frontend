@@ -29,10 +29,10 @@ const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } })
             <div className="server-header-menu">
               <ul className="menu-list">
                 <li>
-                  <NavLink exact activeClassName="active" className="menu-links" to={`${url}`}>home</NavLink>
+                  <NavLink exact activeClassName="active" className="menu-links" to={`${url}`}>Home</NavLink>
                 </li>
                 <li>
-                  <NavLink activeClassName="active" className="menu-links" to={`${url}/settings`}>settings</NavLink>
+                  <NavLink activeClassName="active" className="menu-links" to={`${url}/settings`}>Settings</NavLink>
                 </li>
               </ul>
             </div>

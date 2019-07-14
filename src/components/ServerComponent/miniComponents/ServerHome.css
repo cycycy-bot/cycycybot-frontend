@@ -40,6 +40,15 @@
   align-items: center;
 }
 
+.card-main .card-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.815);
+}
+
+.card-desc strong {
+  color: rgb(255, 82, 82);
+}
+
 .card-icon .mod-hammer {
   font-size: 2rem;
 }
@@ -48,6 +57,3 @@
   height: 50px;
 }
 
-@media screen and (max-width: 900px) {
-
-}

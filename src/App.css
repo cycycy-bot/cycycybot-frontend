@@ -2,12 +2,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   color: rgb(255, 255, 255);
   background: #34383c;
   height: 100%;
+  font-size: 1rem;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 ul {
@@ -20,9 +28,10 @@ a {
 }
 
 .navbar-spacer {
-  padding-top: 80px;
-  min-height: 100vh;
+  margin-top:80px;
   width:100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .spacer {
@@ -40,6 +49,24 @@ button {
   text-align: left;
 }
 
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+button.delete {
+  padding: 1rem 2rem;
+  background: rgb(255, 82, 82);
+  border-radius: 5px;
+}
+
+button.update {
+  padding: 1rem 2rem;
+  background: rgb(38, 176, 4);
+  border-radius: 5px;
+}
+
 .select-items {
   position: relative;
   background: #2b2f33;
@@ -49,4 +76,10 @@ button {
   outline: none;
   cursor: pointer;
   color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    font-size: 0.8rem;
+  }
 }

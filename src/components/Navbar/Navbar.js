@@ -62,7 +62,7 @@ const Navbar = (props) => {
                           </span>
                         </div>
                         <div className={data.dropDownOpen.isOpen ? 'dropdown-content active' : 'dropdown-content'}>
-                          <div className="dropdown-item"><NavLink to="/dashboard">servers</NavLink></div>
+                          <div className="dropdown-item"><NavLink to="/dashboard">Servers</NavLink></div>
                           <div className="dropdown-item">
                             <button
                               onClick={logout}

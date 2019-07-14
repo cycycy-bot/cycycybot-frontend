@@ -3,7 +3,11 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 80px);
+  flex-direction: column;
+}
+
+.server-container .select-server{
+  margin: 1.5rem 0 0;
 }
 
 .servers {
@@ -12,8 +16,7 @@
   justify-content: center;
   align-items: center;
   width: 80%;
-  visibility: hidden;
-  opacity: 0;
+  flex: 1;
 }
 
 .servers .server {
@@ -22,7 +25,7 @@
   align-items: center;
   flex-direction: column;
   margin: 1.3rem;
-  width: 150px;
+  width: 200px;
 }
 
 .servers .server .server-img {
@@ -40,4 +43,16 @@
 .active {
   visibility: visible;
   opacity: 1;
+}
+
+@media screen and (max-width: 900px) {
+  .servers .server {
+    margin: 0.5rem;
+  }
+
+  .servers .server .server-img {
+    height: 40px;
+    width: 40px;
+    margin: 0.5rem;
+  }
 }

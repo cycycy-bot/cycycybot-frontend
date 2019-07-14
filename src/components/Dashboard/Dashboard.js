@@ -38,12 +38,15 @@ const Dashboard = ({ match: { path } }) => {
 
   return (
     <div className="server-container">
+
       {
         isLoading
           ? <Loading />
           : (
-            <div className="servers active">
-              {
+            <>
+              <h1 className="select-server">Select Server</h1>
+              <div className="servers active">
+                {
                 servers.map(({
                   id, bot, icon, name,
                 }) => (
@@ -77,7 +80,8 @@ const Dashboard = ({ match: { path } }) => {
                     }
                   </React.Fragment>
                 ))}
-            </div>
+              </div>
+            </>
           )
       }
     </div>
