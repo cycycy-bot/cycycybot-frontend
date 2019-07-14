@@ -2,50 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 // components
 import Loading from '../../../Loading';
-import Select from '../Selector/Select';
 
 import './Mod.css';
 
 const Mod = ({ server: { id } }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const location = useState([
-    {
-      id: 0,
-      title: 'New York',
-      selected: false,
-      key: 'location',
-    },
-    {
-      id: 1,
-      title: 'Dublin',
-      selected: false,
-      key: 'location',
-    },
-    {
-      id: 2,
-      title: 'California',
-      selected: false,
-      key: 'location',
-    },
-    {
-      id: 3,
-      title: 'Istanbul',
-      selected: false,
-      key: 'location',
-    },
-    {
-      id: 4,
-      title: 'Izmir',
-      selected: false,
-      key: 'location',
-    },
-    {
-      id: 5,
-      title: 'Oslo',
-      selected: false,
-      key: 'location',
-    },
-  ]);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     console.log('%c[cycycy bot] => ', 'color:green', `Fetching roles from guild: ${id}`);
@@ -57,22 +19,39 @@ const Mod = ({ server: { id } }) => {
       }),
     })
       .then(res => res.json())
-      .then((roles) => {
-        console.log('%c[cycycy bot] => ', 'color:green', 'Fetched roles: ', roles);
+      .then((resRoles) => {
+        console.log('%c[cycycy bot] => ', 'color:green', 'Fetched roles: ', resRoles);
+        setRoles(resRoles);
         setIsLoading(false);
       });
 
     fetchRoles();
   }, [id]);
 
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
-    <div className="server-home-content">
+    <div className="server-home-contents">
       {
       isLoading
         ? <Loading />
         : (
           <div className="mod-container">
-            <Select title="Select location" list={location} />
+            <div className="mod-header">
+              <h1>edit moderator</h1>
+
+            </div>
+            <div className="box">
+              <select onChange={handleChange}>
+                {
+                  roles.map(role => (
+                    <option value={role.id} key={role.id} style={{ color: `#${role.color.toString(16)}` }}>{`#${role.name}`}</option>
+                  ))
+                }
+              </select>
+            </div>
           </div>
         )
       }

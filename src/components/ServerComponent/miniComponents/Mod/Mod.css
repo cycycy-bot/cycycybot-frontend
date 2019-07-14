@@ -1,0 +1,14 @@
+.mod-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.box select {
+  background: #2b2f33;
+  color: rgb(255,255,255);
+  height: 40px;
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #1a1a1a;
+}
