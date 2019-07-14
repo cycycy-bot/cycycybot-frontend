@@ -1,8 +1,11 @@
 .lds-facebook {
   display: inline-block;
-  position: relative;
+  position: fixed;
   width: 64px;
   height: 64px;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
 }
 .lds-facebook div {
   display: inline-block;
@@ -32,5 +35,11 @@
   50%, 100% {
     top: 19px;
     height: 26px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .lds-facebook {
+    left: 42%;
   }
 }

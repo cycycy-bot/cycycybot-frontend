@@ -12,31 +12,30 @@ const ServerComponent = ({ match, match: { params: { serverId } } }) => {
   const [hasError, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchServer = () => {
-    console.log('%c[cycycy bot] => ', 'color:green', 'Fetching server');
-    fetch(`http://localhost:5000/api/discord/getguilds/${serverId}`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token,
-      }),
-    })
-      .then(res => res.json())
-      .then((serverRes) => {
-        const { error } = serverRes;
-        if (error) {
-          setError(true);
-          return setIsLoading(false);
-        }
-        setServer(serverRes);
-        console.log('%c[cycycy bot] => ', 'color:green', 'Fetched server: ', serverRes);
-        return setIsLoading(false);
-      });
-  };
-
   useEffect(() => {
+    const fetchServer = () => {
+      console.log('%c[cycycy bot] => ', 'color:green', 'Fetching server');
+      fetch(`http://localhost:5000/api/discord/getguilds/${serverId}`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+        }),
+      })
+        .then(res => res.json())
+        .then((serverRes) => {
+          const { error } = serverRes;
+          if (error) {
+            setError(true);
+            return setIsLoading(false);
+          }
+          setServer(serverRes);
+          console.log('%c[cycycy bot] => ', 'color:green', 'Fetched server: ', serverRes);
+          return setIsLoading(false);
+        });
+    };
     fetchServer();
-  }, []);
+  }, [serverId]);
 
   return (
     <div className="server-container">
