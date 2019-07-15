@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -11,10 +11,17 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import ServerComponent from './components/ServerComponent/ServerComponent';
 import Footer from './components/Footer';
+import Modal from './components/Modal/Modal';
 // import Mod from './components/Mod/Mod';
 // import BanPhrase from './components/BanPhrase/BanPhrase';
 
-function App() {
+const App = () => {
+  const [isOpen, setModal] = useState(false);
+
+  const showModal = () => {
+    setModal(!isOpen);
+  };
+
   return (
     <div className="App">
       <Navbar />
@@ -31,9 +38,11 @@ function App() {
           />
         </Switch>
       </div>
+      <Modal show={isOpen} close={showModal}>YOYOYO</Modal>
+      <button onClick={showModal}>show</button>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
