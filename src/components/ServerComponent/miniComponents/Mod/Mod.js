@@ -84,7 +84,7 @@ const Mod = ({ server: { id, name } }) => {
                         : null
                     }
                   <div className="mod-header">
-                    <h1>edit moderator</h1>
+                    <h1>Edit Moderator</h1>
                     <h4>Update or Delete moderator role</h4>
                   </div>
                   <div className="box">

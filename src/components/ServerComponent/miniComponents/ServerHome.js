@@ -27,9 +27,18 @@ const ServerHome = ({ match: { path } }) => (
           </div>
         </div>
       </NavLink>
-      <div className="card">
-        <div className="card-title" />
-      </div>
+      <NavLink className="card" to={`${path}/commands`}>
+        <div className="card-title">
+          <h1>Commands</h1>
+        </div>
+        <div className="card-main">
+          <div className="card-desc">
+            <span>
+              Add/Edit/Delete server commands
+            </span>
+          </div>
+        </div>
+      </NavLink>
       <div className="card">
         <div className="card-title" />
       </div>

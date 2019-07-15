@@ -1,0 +1,44 @@
+.commands-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.commands-main {
+  margin-top: 1.5rem;
+}
+
+.commands-main .commands-add {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.commando {
+  min-height: 80px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  margin: 0.5rem 0;
+  background: #2b2f33;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.commando .command-buttons {
+  justify-self: flex-end;
+}
+
+.command-buttons button {
+  margin: 0 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .commands-container {
+    width: 90%;
+  }
+
+  .command-buttons button {
+    margin: 0 0.2rem;
+  }
+}

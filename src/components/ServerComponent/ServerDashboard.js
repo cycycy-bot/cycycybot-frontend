@@ -7,6 +7,7 @@ import './ServerDashboard.css';
 import ServerHome from './miniComponents/ServerHome';
 import Home from '../Home';
 import Mod from './miniComponents/Mod';
+import Commands from './miniComponents/Commands';
 
 const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } }) => (
   <div className="server-dashboard">
@@ -45,6 +46,7 @@ const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } })
         <Route exact path={`${url}`} render={({ ...rest }) => <ServerHome {...rest} />} />
         <Route path={`${url}/settings`} component={Home} />
         <Route path={`${url}/moderator`} render={({ ...rest }) => <Mod {...rest} server={server} />} />
+        <Route path={`${url}/commands`} render={({ ...rest }) => <Commands {...rest} server={server} />} />
       </Switch>
     </div>
   </div>
