@@ -9,6 +9,7 @@ import {
   GET_COMMANDS,
   ADD_COMMAND,
   DEL_COMMAND,
+  EDIT_COMMAND,
 } from '../../../../queries';
 
 import './Commands.css';
@@ -27,6 +28,7 @@ const Commands = ({ server: { id, name } }) => {
   // modal inputs
   const [commandName, setCommandName] = useState('');
   const [commandRes, setCommandRes] = useState('');
+  const [textAreaRes, setTextAreaRes] = useState({});
 
   const showModal = () => {
     setModal(!isOpen);
@@ -62,6 +64,12 @@ const Commands = ({ server: { id, name } }) => {
 
   const handleCommandRes = (e) => {
     setCommandRes(e.target.value);
+  };
+
+  const handleTextAreaResChange = (cmdId, e) => {
+    setTextAreaRes({
+      [cmdId]: e.target.value,
+    });
   };
 
   return (
@@ -163,7 +171,7 @@ const Commands = ({ server: { id, name } }) => {
                 <div className="command-buttons">
                   {/* EDIT MODAL */}
                   <Mutation
-                    mutation={DEL_COMMAND}
+                    mutation={EDIT_COMMAND}
                     refetchQueries={() => [{
                       query: GET_COMMANDS,
                       variables: {
@@ -172,16 +180,18 @@ const Commands = ({ server: { id, name } }) => {
                     }]}
                   >
                     {(editCmd) => {
-                      const onEditCmd = () => {
-                        if (commandRes) {
+                      const onEditCmd = (textAreaVal) => {
+                        if (textAreaVal) {
+                          console.log(textAreaVal);
                           editCmd({
                             variables: {
                               serverID: id,
                               commandName: command.commandName,
+                              commandRes: textAreaRes[command.id],
                             },
                           })
                             .then(() => {
-                              showModal();
+                              closeCommandModal();
                             });
                         }
                       };
@@ -193,7 +203,7 @@ const Commands = ({ server: { id, name } }) => {
                             close={closeCommandModal}
                             classN="update"
                             btnName="Save"
-                            onSaveClick={() => onEditCmd()}
+                            onSaveClick={() => onEditCmd(textAreaRes[command.id])}
                           >
                             <h2>{`!=${command.commandName}`}</h2>
                             <h5>Edit Command Response</h5>
@@ -203,9 +213,10 @@ const Commands = ({ server: { id, name } }) => {
                                 maxLength="1000"
                                 onChange={(e) => {
                                   setMaxChar(e.target.value.length);
-                                  setCommandRes(e.target.value);
+                                  handleTextAreaResChange(command.id, e);
                                 }}
-                                value={commandRes}
+                                defaultValue={command.commandRes}
+                                placeholder={command.commandRes}
                               />
                               <span>
                                 Remaining characters:
@@ -220,7 +231,6 @@ const Commands = ({ server: { id, name } }) => {
                       );
                     }}
                   </Mutation>
-
                   <Mutation
                     mutation={DEL_COMMAND}
                     refetchQueries={() => [{
@@ -261,9 +271,7 @@ const Commands = ({ server: { id, name } }) => {
                         </>
                       );
                     }}
-
                   </Mutation>
-
                 </div>
               </div>
             ))}
