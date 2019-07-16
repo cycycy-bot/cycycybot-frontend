@@ -5,12 +5,11 @@ import Cookies from 'js-cookie';
 import Loading from '../Loading';
 import ServerDashboard from './ServerDashboard';
 
-const token = Cookies.get('token');
-
 const ServerComponent = ({ match, match: { params: { serverId } } }) => {
   const [server, setServer] = useState({});
   const [hasError, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const token = Cookies.get('token');
 
   useEffect(() => {
     const fetchServer = () => {

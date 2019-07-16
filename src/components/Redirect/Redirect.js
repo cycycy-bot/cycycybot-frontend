@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 import Loading from '../Loading';
 
-const Redirects = ({ location: { search } }) => {
+const Redirects = (({ location: { search } }) => {
   const [isLoading, setLoading] = useState(true);
   const query = new URLSearchParams(search);
   const code = query.get('code');
@@ -36,6 +36,6 @@ const Redirects = ({ location: { search } }) => {
       }
     </>
   );
-};
+});
 
 export default Redirects;
