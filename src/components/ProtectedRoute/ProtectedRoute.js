@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import auth from '../../auth';
 
+import Loading from '../Loading';
+
 const ProtectedRoute = withRouter(({ history, component: Component, ...rest }) => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,7 +20,7 @@ const ProtectedRoute = withRouter(({ history, component: Component, ...rest }) =
     <>
       {
         isLoading
-          ? <div>Loading...</div>
+          ? <Loading />
           : (
             <Route
               {...rest}

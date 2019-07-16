@@ -34,7 +34,7 @@ const ServerComponent = ({ match, match: { params: { serverId } } }) => {
         });
     };
     fetchServer();
-  }, [serverId]);
+  }, [serverId, token]);
 
   return (
     <div className="server-container">

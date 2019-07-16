@@ -15,6 +15,11 @@ import './Commands.css';
 const Commands = ({ server: { id, name } }) => {
   const [isOpen, setModal] = useState(false);
   const [commandName, setCommandName] = useState('');
+  const [commandRes, setCommandRes] = useState('');
+  const [maxChar, setMaxChar] = useState(0);
+
+  // error
+  const [isError, setError] = useState(false);
 
   const showModal = () => {
     setModal(!isOpen);
@@ -33,27 +38,85 @@ const Commands = ({ server: { id, name } }) => {
         </div>
         <div className="commands-main">
           <div className="commands-add">
-            <Mutation mutation={ADD_COMMAND}>
-              {addCmd => (
-                <>
-                  <button
-                    className="update"
-                    onClick={showModal}
-                  >
-                  Add
-                  </button>
-                  <Modal show={isOpen} close={showModal}>
-                    <h2>Add Command</h2>
-                    <h5>Command Name</h5>
-                    <input type="text" className="modal-input" onChange={e => handleCommandName(e)} value={commandName} />
-                    <h5>Command Response</h5>
-                  </Modal>
-                </>
-              )}
+            <Mutation
+              mutation={ADD_COMMAND}
+              refetchQueries={() => [{
+                query: GET_COMMANDS,
+                variables: {
+                  serverID: id,
+                },
+              }]}
+            >
+              {(addCmd) => {
+                const onAddClick = () => {
+                  if (commandName && commandRes) {
+                    return addCmd({
+                      variables: {
+                        serverID: id,
+                        serverName: name,
+                        commandName,
+                        commandRes,
+                      },
+                    })
+                      .then(() => {
+                        setError(false);
+                        showModal();
+                      })
+                      .catch(() => setError(true));
+                  }
+                  return setError(true);
+                };
+
+                return (
+                  <>
+                    <button
+                      className="update"
+                      onClick={showModal}
+                    >
+                      Add
+                    </button>
+                    <Modal
+                      show={isOpen}
+                      close={showModal}
+                      onSaveClick={() => onAddClick()}
+                    >
+                      {
+                      isError
+                        ? <div className="alert-deleted">An error has occured.</div>
+                        : null
+                    }
+                      <h2>Add Command</h2>
+                      <h5>Command Name</h5>
+                      <input
+                        type="text"
+                        className="modal-input"
+                        onChange={e => handleCommandName(e)}
+                        value={commandName}
+                        required
+                      />
+                      <h5>Command Response</h5>
+                      <div className="textarea-container">
+                        <textarea
+                          className="modal-textarea"
+                          maxLength="1000"
+                          onChange={(e) => {
+                            setMaxChar(e.target.value.length);
+                            setCommandRes(e.target.value);
+                          }}
+                        />
+                        <span>
+                        Remaining characters:
+                          {' '}
+                          {maxChar}
+                        /1000
+                        </span>
+                      </div>
+                    </Modal>
+                  </>
+                );
+              }}
             </Mutation>
-
           </div>
-
           <QueryComp query={GET_COMMANDS} variables={{ serverID: id }}>
             {({ customcommands }) => customcommands.map(command => (
               <div className="commando" key={command.id}>
