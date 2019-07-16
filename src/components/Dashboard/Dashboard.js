@@ -8,32 +8,30 @@ import './Dashboard.css';
 // import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Loading from '../Loading';
 
-const token = Cookies.get('token');
-
 const Dashboard = ({ match: { path } }) => {
   const [servers, setServers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const fetchServers = () => {
-    console.log('%c[cycycy bot] => ', 'color:green', 'Fetching servers');
-    fetch('http://localhost:5000/api/discord/getguilds', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token,
-      }),
-    })
-      .then(res => res.json())
-      .then((server) => {
-        setServers(server);
-        console.log('%c[cycycy bot] => ', 'color:green', 'Loaded servers: ', server);
-        setIsLoading(false);
-      });
-  };
+  const token = Cookies.get('token');
 
   useEffect(() => {
+    const fetchServers = () => {
+      console.log('%c[cycycy bot] => ', 'color:green', 'Fetching servers');
+      fetch('http://localhost:5000/api/discord/getguilds', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+        }),
+      })
+        .then(res => res.json())
+        .then((server) => {
+          setServers(server);
+          console.log('%c[cycycy bot] => ', 'color:green', 'Loaded servers: ', server);
+          setIsLoading(false);
+        });
+    };
     fetchServers();
-  }, []);
+  }, [token]);
 
   return (
     <div className="server-container">

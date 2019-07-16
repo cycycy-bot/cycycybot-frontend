@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 // components
+import Redirects from './components/Redirect/Redirect';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
@@ -28,6 +29,7 @@ const App = () => {
       <div className="navbar-spacer spacer">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/redirect" component={Redirects} />
           <ProtectedRoute path="/dashboard/:serverId" component={ServerComponent} />
           <ProtectedRoute path="/dashboard" component={Dashboard} />
           {/* <ProtectedRoute path="/banphrase" component={BanPhrase} />
