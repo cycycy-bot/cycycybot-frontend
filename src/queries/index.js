@@ -4,6 +4,7 @@ import { UPDATE_MOD } from './UPDATE_MOD';
 import { GET_BANPHRASE } from './GET_BANPHRASE';
 import { GET_COMMANDS } from './GET_COMMANDS';
 import { ADD_COMMAND } from './ADD_COMMAND';
+import { DEL_COMMAND } from './DEL_COMMAND';
 
 export {
   GET_MOD,
@@ -12,4 +13,5 @@ export {
   GET_BANPHRASE,
   GET_COMMANDS,
   ADD_COMMAND,
+  DEL_COMMAND,
 };

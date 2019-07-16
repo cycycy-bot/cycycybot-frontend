@@ -3,7 +3,7 @@ import React from 'react';
 import './Modal.css';
 
 const Modal = ({
-  show, children, close, onSaveClick,
+  show, children, close, onSaveClick, classN, btnName,
 }) => {
   const showing = show;
 
@@ -29,7 +29,7 @@ const Modal = ({
                   >
                     Cancel
                   </button>
-                  <button className="update modal-save" onClick={onSaveClick}>Save</button>
+                  <button className={classN} onClick={onSaveClick}>{btnName}</button>
                 </div>
               </div>
             </div>

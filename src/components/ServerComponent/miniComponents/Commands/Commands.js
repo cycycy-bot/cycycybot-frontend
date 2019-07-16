@@ -8,25 +8,60 @@ import Modal from '../../../Modal';
 import {
   GET_COMMANDS,
   ADD_COMMAND,
+  DEL_COMMAND,
 } from '../../../../queries';
 
 import './Commands.css';
 
 const Commands = ({ server: { id, name } }) => {
-  const [isOpen, setModal] = useState(false);
-  const [commandName, setCommandName] = useState('');
-  const [commandRes, setCommandRes] = useState('');
   const [maxChar, setMaxChar] = useState(0);
 
   // error
   const [isError, setError] = useState(false);
 
+  // modals
+  const [isOpen, setModal] = useState(false);
+  const [isCommandOpen, setCommandModal] = useState({});
+  const [isDelOpen, setDelOpen] = useState({});
+
+  // modal inputs
+  const [commandName, setCommandName] = useState('');
+  const [commandRes, setCommandRes] = useState('');
+
   const showModal = () => {
     setModal(!isOpen);
   };
 
+  const showCommandModal = (cmdId) => {
+    setCommandModal({
+      [cmdId]: true,
+    });
+  };
+
+  const closeCommandModal = (cmdId) => {
+    setCommandModal({
+      [cmdId]: false,
+    });
+  };
+
+  const showDelModal = (cmdId) => {
+    setDelOpen({
+      [cmdId]: true,
+    });
+  };
+
+  const closeDelModal = (cmdId) => {
+    setDelOpen({
+      [cmdId]: false,
+    });
+  };
+
   const handleCommandName = (e) => {
     setCommandName(e.target.value);
+  };
+
+  const handleCommandRes = (e) => {
+    setCommandRes(e.target.value);
   };
 
   return (
@@ -79,6 +114,8 @@ const Commands = ({ server: { id, name } }) => {
                       show={isOpen}
                       close={showModal}
                       onSaveClick={() => onAddClick()}
+                      classN="update"
+                      btnName="Save"
                     >
                       {
                       isError
@@ -101,8 +138,9 @@ const Commands = ({ server: { id, name } }) => {
                           maxLength="1000"
                           onChange={(e) => {
                             setMaxChar(e.target.value.length);
-                            setCommandRes(e.target.value);
+                            handleCommandRes(e);
                           }}
+                          value={commandRes}
                         />
                         <span>
                         Remaining characters:
@@ -123,8 +161,109 @@ const Commands = ({ server: { id, name } }) => {
                 <p>{`!=${command.commandName}`}</p>
                 <div className="spacer" />
                 <div className="command-buttons">
-                  <button className="edit">Edit</button>
-                  <button className="delete">Delete</button>
+                  {/* EDIT MODAL */}
+                  <Mutation
+                    mutation={DEL_COMMAND}
+                    refetchQueries={() => [{
+                      query: GET_COMMANDS,
+                      variables: {
+                        serverID: id,
+                      },
+                    }]}
+                  >
+                    {(editCmd) => {
+                      const onEditCmd = () => {
+                        if (commandRes) {
+                          editCmd({
+                            variables: {
+                              serverID: id,
+                              commandName: command.commandName,
+                            },
+                          })
+                            .then(() => {
+                              showModal();
+                            });
+                        }
+                      };
+
+                      return (
+                        <>
+                          <Modal
+                            show={isCommandOpen[command.id]}
+                            close={closeCommandModal}
+                            classN="update"
+                            btnName="Save"
+                            onSaveClick={() => onEditCmd()}
+                          >
+                            <h2>{`!=${command.commandName}`}</h2>
+                            <h5>Edit Command Response</h5>
+                            <div className="textarea-container">
+                              <textarea
+                                className="modal-textarea"
+                                maxLength="1000"
+                                onChange={(e) => {
+                                  setMaxChar(e.target.value.length);
+                                  setCommandRes(e.target.value);
+                                }}
+                                value={commandRes}
+                              />
+                              <span>
+                                Remaining characters:
+                                {' '}
+                                {maxChar}
+                                /1000
+                              </span>
+                            </div>
+                          </Modal>
+                          <button className="edit" onClick={() => showCommandModal(command.id)}>Edit</button>
+                        </>
+                      );
+                    }}
+                  </Mutation>
+
+                  <Mutation
+                    mutation={DEL_COMMAND}
+                    refetchQueries={() => [{
+                      query: GET_COMMANDS,
+                      variables: {
+                        serverID: id,
+                      },
+                    }]}
+                  >
+                    {(delCmd) => {
+                      const onDelCmd = () => {
+                        delCmd({
+                          variables: {
+                            serverID: id,
+                            commandName: command.commandName,
+                          },
+                        });
+                      };
+                      return (
+                        <>
+                          <button
+                            className="delete"
+                            onClick={() => showDelModal(command.id)}
+                          >
+                            Delete
+                          </button>
+                          {/* DELETE MODAL */}
+                          <Modal
+                            show={isDelOpen[command.id]}
+                            close={closeDelModal}
+                            classN="delete"
+                            btnName="Delete"
+                            onSaveClick={onDelCmd}
+                          >
+                            <h3>{command.commandName}</h3>
+                            Delete this command?
+                          </Modal>
+                        </>
+                      );
+                    }}
+
+                  </Mutation>
+
                 </div>
               </div>
             ))}

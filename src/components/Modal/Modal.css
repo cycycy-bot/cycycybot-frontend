@@ -40,7 +40,7 @@
 
 .modal h2 {
   border-bottom: 1px solid #ccc;
-  padding: 1rem;
+  padding: 1rem 0;
   margin: 0;
 }
 
@@ -86,8 +86,4 @@
   border-radius: 5px;
   border: 1px solid #1a1a1a;
   padding: 0.5rem;
-}
-
-.modal-save {
-  justify-self: flex-end;
 }
