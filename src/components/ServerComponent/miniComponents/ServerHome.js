@@ -39,9 +39,18 @@ const ServerHome = ({ match: { path } }) => (
           </div>
         </div>
       </NavLink>
-      <div className="card">
-        <div className="card-title" />
-      </div>
+      <NavLink className="card" to={`${path}/banphrase`}>
+        <div className="card-title">
+          <h1>Banphrases</h1>
+        </div>
+        <div className="card-main">
+          <div className="card-desc">
+            <span>
+              Add some moderation in your server!
+            </span>
+          </div>
+        </div>
+      </NavLink>
     </div>
   </>
 );

@@ -1,0 +1,19 @@
+.banphrase-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.banphrase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+  background: #2b2f33;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.banphrase-add {
+  display: flex;
+  justify-content: flex-end;
+}

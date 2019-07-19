@@ -8,6 +8,7 @@ import ServerHome from './miniComponents/ServerHome';
 import Home from '../Home';
 import Mod from './miniComponents/Mod';
 import Commands from './miniComponents/Commands';
+import Banphrase from './miniComponents/Banphrase';
 
 const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } }) => (
   <div className="server-dashboard">
@@ -47,6 +48,7 @@ const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } })
         <Route path={`${url}/settings`} component={Home} />
         <Route path={`${url}/moderator`} render={({ ...rest }) => <Mod {...rest} server={server} />} />
         <Route path={`${url}/commands`} render={({ ...rest }) => <Commands {...rest} server={server} />} />
+        <Route path={`${url}/banphrase`} render={({ ...rest }) => <Banphrase {...rest} server={server} />} />
       </Switch>
     </div>
   </div>

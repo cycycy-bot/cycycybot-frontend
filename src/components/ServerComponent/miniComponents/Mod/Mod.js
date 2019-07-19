@@ -103,7 +103,15 @@ const Mod = ({ server: { id, name } }) => {
                     </select>
                   </div>
                   <div className="mod-footer">
-                    <Mutation mutation={DEL_MOD}>
+                    <Mutation
+                      mutation={DEL_MOD}
+                      refetchQueries={() => [{
+                        query: GET_MOD,
+                        variables: {
+                          serverID: id,
+                        },
+                      }]}
+                    >
                       {delMod => (
                         <button
                           onClick={() => {
@@ -128,7 +136,15 @@ const Mod = ({ server: { id, name } }) => {
                         </button>
                       )}
                     </Mutation>
-                    <Mutation mutation={UPDATE_MOD}>
+                    <Mutation
+                      mutation={UPDATE_MOD}
+                      refetchQueries={() => [{
+                        query: GET_MOD,
+                        variables: {
+                          serverID: id,
+                        },
+                      }]}
+                    >
                       {addMod => (
                         <button
                           className="update"
