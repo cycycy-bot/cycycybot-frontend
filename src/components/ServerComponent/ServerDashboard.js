@@ -4,8 +4,8 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import './ServerDashboard.css';
 
 // components
-import ServerHome from './miniComponents/ServerHome';
-import Home from '../Home';
+import ServerHome from './miniComponents/ServerHome/ServerHome';
+import Settings from './miniComponents/Settings';
 import Mod from './miniComponents/Mod';
 import Commands from './miniComponents/Commands';
 import Banphrase from './miniComponents/Banphrase';
@@ -45,7 +45,7 @@ const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } })
     <div className="server-home-container">
       <Switch>
         <Route exact path={`${url}`} render={({ ...rest }) => <ServerHome {...rest} />} />
-        <Route path={`${url}/settings`} component={Home} />
+        <Route path={`${url}/settings`} component={Settings} />
         <Route path={`${url}/moderator`} render={({ ...rest }) => <Mod {...rest} server={server} />} />
         <Route path={`${url}/commands`} render={({ ...rest }) => <Commands {...rest} server={server} />} />
         <Route path={`${url}/banphrase`} render={({ ...rest }) => <Banphrase {...rest} server={server} />} />

@@ -46,8 +46,20 @@
 }
 
 @media screen and (max-width: 900px) {
+  .servers {
+    width: 100%;
+  }
+
   .servers .server {
     margin: 0.5rem;
+    width: 100px;
+  }
+
+  .servers .server span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .servers .server .server-img {

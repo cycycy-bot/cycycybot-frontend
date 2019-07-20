@@ -10,7 +10,6 @@ const Redirects = (({ location: { search } }) => {
   const code = query.get('code');
 
   useEffect(() => {
-    console.log(code);
     const fetchToken = () => fetch('http://localhost:5000/api/discord/callback', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },

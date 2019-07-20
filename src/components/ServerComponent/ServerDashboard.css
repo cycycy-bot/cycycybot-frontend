@@ -40,8 +40,8 @@
 }
 
 .server-header .server-img {
-  height: 50px;
-  min-width: 50px;
+  height: 40px;
+  min-width: 40px;
   margin: 0.8rem;
   border-radius: 50%;
   border: rgb(255,255,255) 2px solid;
@@ -86,6 +86,10 @@
 @media screen and (max-width: 900px) {
   .server-header .header-content {
     width: 100%;
+  }
+
+  .server-name h3 {
+    display: none;
   }
 
   .headerDivider {

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import './ServerHome.css';
 import nam from './img/nam.png';
+import cmonBruh from './img/cmonBruh.jpg';
 
 const ServerHome = ({ match: { path } }) => (
   <>
@@ -32,6 +33,11 @@ const ServerHome = ({ match: { path } }) => (
           <h1>Commands</h1>
         </div>
         <div className="card-main">
+          <div className="card-icon">
+            <span className="mod-hammer" role="img" aria-label="emoji">
+              ❗ 🤔
+            </span>
+          </div>
           <div className="card-desc">
             <span>
               Add/Edit/Delete server commands
@@ -44,6 +50,12 @@ const ServerHome = ({ match: { path } }) => (
           <h1>Banphrases</h1>
         </div>
         <div className="card-main">
+          <div className="card-icon">
+            <span className="mod-hammer" role="img" aria-label="emoji">
+              ☝️
+            </span>
+            <img className="mod-icon" src={cmonBruh} alt="cmonBruh" />
+          </div>
           <div className="card-desc">
             <span>
               Add some moderation in your server!
