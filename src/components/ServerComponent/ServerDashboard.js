@@ -45,7 +45,7 @@ const ServerDashboard = ({ match: { url }, server, server: { name, id, icon } })
     <div className="server-home-container">
       <Switch>
         <Route exact path={`${url}`} render={({ ...rest }) => <ServerHome {...rest} />} />
-        <Route path={`${url}/settings`} component={Settings} />
+        <Route path={`${url}/settings`} render={({ ...rest }) => <Settings {...rest} server={server} />} />
         <Route path={`${url}/moderator`} render={({ ...rest }) => <Mod {...rest} server={server} />} />
         <Route path={`${url}/commands`} render={({ ...rest }) => <Commands {...rest} server={server} />} />
         <Route path={`${url}/banphrase`} render={({ ...rest }) => <Banphrase {...rest} server={server} />} />

@@ -1,0 +1,28 @@
+.server-settings-container {
+  width: 500px;
+  max-width: 1000px;
+}
+
+.settings-main {
+  margin-top: 1.5rem;
+}
+
+.settings-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.settings-button .box {
+  margin: 0 2rem;
+}
+
+.settings-button .box select {
+  margin: 0 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .server-settings-container {
+    width: 90%;
+  }
+}
