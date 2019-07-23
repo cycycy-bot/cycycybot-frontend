@@ -4,12 +4,15 @@ import { Mutation, Query } from 'react-apollo';
 import auth from '../../auth';
 
 import './Navbar.css';
+import icon from './img/peepoNaM.png';
 
 // queries
 import {
   GET_DROP_DOWN,
   SET_DROP_DOWN,
 } from '../../localQueries';
+
+const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=guilds%20email%20identify';
 
 const Navbar = () => {
   const [user, setUser] = useState();
@@ -34,7 +37,11 @@ const Navbar = () => {
     <header id="nav-bar" className="nav-container">
       <nav className="toolbar">
         <div className="toolbar-nav">
-          <div className="cycycy-bot-icon"><NavLink to="/">cbot icon</NavLink></div>
+          <div className="cycycy-bot-icon">
+            <NavLink to="/">
+              <img className="cbot-logo" src={icon} alt="cbot icon" />
+            </NavLink>
+          </div>
           <div className="spacer" />
           <div className="toolbar-nav-items">
             {
@@ -97,7 +104,13 @@ const Navbar = () => {
                             )}
                           </Query>
                         )
-                        : <a href="https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=guilds%20email%20identify">Login through discord</a>
+                        : (
+                          <a href={url} className="login-button">
+                            <i className="fab fa-discord" />
+                            {' '}
+                            Login
+                          </a>
+                        )
                     }
                   </>
                 )

@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+.cycycy-bot-icon .cbot-logo {
+  height: 50px;
+}
+
 .toolbar .toolbar-nav .cycycy-bot-icon .avatar-img {
   height: 40px;
   width: 40px;
