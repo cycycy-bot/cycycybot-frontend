@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5 {
   font-weight: 100;
 }
 
+.ml-2 {
+  margin-left: 2rem;
+}
+
 h4 {
   padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;

@@ -42,6 +42,16 @@ const Navbar = () => {
               <img className="cbot-logo" src={icon} alt="cbot icon" />
             </NavLink>
           </div>
+          <div className="cycycy-bot-icon ml-2">
+            <NavLink exact activeClassName="navactive" to="/features">
+              Features
+            </NavLink>
+          </div>
+          <div className="cycycy-bot-icon ml-2">
+            <NavLink activeClassName="navactive" to="/commands">
+              Commands
+            </NavLink>
+          </div>
           <div className="spacer" />
           <div className="toolbar-nav-items">
             {
