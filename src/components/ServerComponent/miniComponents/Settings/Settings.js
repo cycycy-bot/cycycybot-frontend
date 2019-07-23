@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 
 // components
 import QueryComp from '../../../QueryComponent/Query';
+import ComingSoon from '../../../ComingSoon';
 
 // queries
 import {
@@ -157,14 +158,8 @@ const Settings = ({ server: { id, name } }) => {
               <div className="settings-main">
                 {
                   isToggleOn
-                    ? (
-                      <>
-                        <div>on</div>
-                      </>
-                    )
-                    : (
-                      <div>off</div>
-                    )
+                    ? <ComingSoon />
+                    : null
                 }
               </div>
             );

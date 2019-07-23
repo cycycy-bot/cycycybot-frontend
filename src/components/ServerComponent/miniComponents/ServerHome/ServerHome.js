@@ -1,6 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// components
+import ComingSoon from '../../../ComingSoon';
+
 import './ServerHome.css';
 import nam from './img/nam.png';
 import cmonBruh from './img/cmonBruh.jpg';
@@ -63,6 +66,7 @@ const ServerHome = ({ match: { path } }) => (
           </div>
         </div>
       </NavLink>
+      <ComingSoon />
     </div>
   </>
 );

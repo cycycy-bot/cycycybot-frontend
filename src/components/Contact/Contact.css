@@ -1,0 +1,19 @@
+.contact-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-content {
+  width: 80%;
+}
+
+.contact-content p {
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+.contact-content a {
+  color: #7289da;
+}

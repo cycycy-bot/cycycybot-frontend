@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 
 // components
-// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Loading from '../Loading';
 
 const Dashboard = ({ match: { path } }) => {
