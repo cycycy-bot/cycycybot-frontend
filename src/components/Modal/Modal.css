@@ -28,6 +28,12 @@
   z-index: 500;
 }
 
+.modal h4 {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
 .modal.off {
   opacity: 0;
   visibility: hidden;
