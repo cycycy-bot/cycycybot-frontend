@@ -29,7 +29,6 @@ const Footer = () => {
         setCommitter(name);
         setCommitDate(date);
       });
-
     fetchLastCommit();
   }, []);
 

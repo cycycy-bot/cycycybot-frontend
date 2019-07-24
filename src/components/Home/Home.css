@@ -16,13 +16,22 @@
   width: 100%;
   max-width: 600px;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   justify-content: center;
+  align-items: center;
+}
+
+.home-main a {
+  margin: 0 0.2rem;
 }
 
 .home-main h1 {
   font-size: 1.5rem;
   text-align: center;
+}
+
+.counter {
+  color: #7289da;
 }
 
 @media screen and (max-width: 900px) {
