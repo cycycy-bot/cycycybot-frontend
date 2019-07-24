@@ -52,7 +52,7 @@ const Features = () => (
         <div className="feature-main">
           <h1>More Features Soon</h1>
           <h4>More features are showed in the commands section</h4>
-          <h4>Upcoming features will be on the github repo</h4>
+          <h4>Upcoming features will be in the github repo</h4>
         </div>
       </section>
     </div>
