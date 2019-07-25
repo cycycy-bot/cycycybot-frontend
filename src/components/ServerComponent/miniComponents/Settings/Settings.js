@@ -25,7 +25,7 @@ const Settings = ({ server: { id, name } }) => {
   useEffect(() => {
     const fetchChannels = () => {
       console.log('%c[cycycy bot] => ', 'color:green', 'Fetching channels');
-      fetch('http://localhost:5000/api/discord/protected/getchannels', {
+      fetch('https://api.cycycy.me/api/discord/protected/getchannels', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

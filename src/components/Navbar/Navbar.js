@@ -12,7 +12,7 @@ import {
   SET_DROP_DOWN,
 } from '../../localQueries';
 
-const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=guilds%20email%20identify';
+const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=https%3A%2F%2Fbot.cycycy.me%2Fredirect&response_type=code&scope=identify%20guilds%20email';
 
 const Navbar = () => {
   const [user, setUser] = useState();

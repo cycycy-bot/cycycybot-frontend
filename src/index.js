@@ -10,7 +10,7 @@ import { defaults, resolvers } from './state';
 
 // apollo client setup
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
+  uri: 'https://api.cycycy.me/graphql',
   clientState: {
     defaults,
     resolvers,

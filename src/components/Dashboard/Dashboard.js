@@ -15,7 +15,7 @@ const Dashboard = ({ match: { path } }) => {
   useEffect(() => {
     const fetchServers = () => {
       console.log('%c[cycycy bot] => ', 'color:green', 'Fetching servers');
-      fetch('http://localhost:5000/api/discord/protected/getguilds', {
+      fetch('https://api.cycycy.me/api/discord/protected/getguilds', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

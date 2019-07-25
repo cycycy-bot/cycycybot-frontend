@@ -13,7 +13,7 @@ const Auth = {
   async authenticate() {
     const token = await Cookies.get('token');
     if (token) {
-      const response = await fetch('http://localhost:5000/api/discord/getuser',
+      const response = await fetch('https://api.cycycy.me/api/discord/getuser',
         {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
@@ -24,7 +24,7 @@ const Auth = {
       console.log('%c[cycycy bot] => ', 'color:green;', 'Setting up user');
       const json = await response.json();
       if (json.code === 0 || json.error) {
-        console.log('%c[cycycy bot] => ', 'color:red;', 'Error: ', json.error);
+        console.log('%c[cycycy bot] => ', 'color:green;', 'Error: ', json.error);
         this.states.isAuthenticated = false;
         return this.states.isAuthenticated;
       }

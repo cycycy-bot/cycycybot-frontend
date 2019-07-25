@@ -31,7 +31,7 @@ const Mod = ({ server: { id, name } }) => {
 
   useEffect(() => {
     console.log('%c[cycycy bot] => ', 'color:green', `Fetching roles from guild: ${id}`);
-    const fetchRoles = () => fetch('http://localhost:5000/api/discord/protected/getroles', {
+    const fetchRoles = () => fetch('https://api.cycycy.me/api/discord/protected/getroles', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

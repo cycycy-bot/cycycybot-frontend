@@ -8,7 +8,7 @@ const Home = () => {
   const [guildLength, setGuildLength] = useState(0);
 
   useState(() => {
-    const getGuildLength = () => fetch('http://localhost:5000/api/discord/getguildlength', {
+    const getGuildLength = () => fetch('https://api.cycycy.me/api/discord/getguildlength', {
       method: 'get',
       headers: { 'Content-Type': 'application/json' },
     })
