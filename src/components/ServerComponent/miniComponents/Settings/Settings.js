@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mutation } from 'react-apollo';
+import Cookies from 'js-cookie';
 
 // components
 import QueryComp from '../../../QueryComponent/Query';
@@ -15,6 +16,7 @@ import {
 import './Settings.css';
 
 const Settings = ({ server: { id, name } }) => {
+  const token = Cookies.get('token');
   const [isToggleOn, setToggle] = useState(false);
   const [channels, setChannels] = useState([]);
   const [selectedChannel, setSelectedChannel] = useState('');
@@ -23,11 +25,12 @@ const Settings = ({ server: { id, name } }) => {
   useEffect(() => {
     const fetchChannels = () => {
       console.log('%c[cycycy bot] => ', 'color:green', 'Fetching channels');
-      fetch('http://localhost:5000/api/discord/getchannels', {
+      fetch('http://localhost:5000/api/discord/protected/getchannels', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           id,
+          token,
         }),
       })
         .then(res => res.json())

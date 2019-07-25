@@ -14,7 +14,7 @@ const ServerComponent = ({ match, match: { params: { serverId } } }) => {
   useEffect(() => {
     const fetchServer = () => {
       console.log('%c[cycycy bot] => ', 'color:green', 'Fetching server');
-      fetch(`http://localhost:5000/api/discord/getguilds/${serverId}`, {
+      fetch(`http://localhost:5000/api/discord/protected/getguilds/${serverId}`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

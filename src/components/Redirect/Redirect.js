@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 
 import Loading from '../Loading';
 
@@ -20,7 +21,7 @@ const Redirects = (({ location: { search } }) => {
       .then(res => res.json())
       .then((token) => {
         console.log('%c[cycycy bot] => ', 'color:green', 'Logging in...');
-        Cookies.set('token', token.access_token);
+        Cookies.set('token', token);
       })
       .then(() => setLoading(false));
     fetchToken();

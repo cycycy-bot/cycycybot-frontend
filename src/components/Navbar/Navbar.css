@@ -32,9 +32,8 @@
   border-bottom: rgb(255,255,255) solid 3px;
 }
 
-.toolbar .toolbar-nav .cycycy-bot-icon .avatar-img {
+.cycycy-bot-icon .avatar-img {
   height: 40px;
-  width: 40px;
   margin: 0 0.8rem;
   border-radius: 50%;
   background: #34383c;
@@ -133,8 +132,6 @@
   }
 }
 
-
-
 /* show dropdown contents */
 .toolbar-nav .toolbar-nav-items .toolbar-dropdown .dropdown-content.active {
   visibility: visible;
@@ -142,12 +139,22 @@
 }
 
 @media screen and (max-width: 900px) {
+  .cycycy-bot-icon .cbot-logo {
+    height: 30px;
+  }
+
+  .cycycy-bot-icon .avatar-img {
+    height: 30px;
+  }
+
   .toolbar-nav {
     padding: 0.8rem 0.8rem;
   }
 
   .toolbar-nav .toolbar-nav-items .toolbar-dropdown .dropdown-content {
     min-width: 0;
+    
+    margin-left: -1rem;
   }
 
   .toolbar-nav .toolbar-nav-items .toolbar-dropdown .user-tag {

@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 
-
 const Auth = {
   states: {
     isAuthenticated: false,
@@ -14,13 +13,13 @@ const Auth = {
   async authenticate() {
     const token = await Cookies.get('token');
     if (token) {
-      const response = await fetch('https://discordapp.com/api/users/@me',
+      const response = await fetch('http://localhost:5000/api/discord/getuser',
         {
-          method: 'get',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token,
+          }),
         });
       console.log('%c[cycycy bot] => ', 'color:green;', 'Setting up user');
       const json = await response.json();

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { graphql, compose, Mutation } from 'react-apollo';
+import Cookies from 'js-cookie';
 
 // queries
 import {
@@ -15,6 +16,7 @@ import QueryComp from '../../../QueryComponent/Query';
 import './Mod.css';
 
 const Mod = ({ server: { id, name } }) => {
+  const token = Cookies.get('token');
   const [isLoading, setIsLoading] = useState(true);
   const [roles, setRoles] = useState([]);
   const [selectedMod, setSelected] = useState();
@@ -29,11 +31,12 @@ const Mod = ({ server: { id, name } }) => {
 
   useEffect(() => {
     console.log('%c[cycycy bot] => ', 'color:green', `Fetching roles from guild: ${id}`);
-    const fetchRoles = () => fetch('http://localhost:5000/api/discord/getroles', {
+    const fetchRoles = () => fetch('http://localhost:5000/api/discord/protected/getroles', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
+        token,
       }),
     })
       .then(res => res.json())
