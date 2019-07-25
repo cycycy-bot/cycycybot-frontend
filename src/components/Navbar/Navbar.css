@@ -34,6 +34,7 @@
 
 .cycycy-bot-icon .avatar-img {
   height: 40px;
+  width: 40px;
   margin: 0 0.8rem;
   border-radius: 50%;
   background: #34383c;
@@ -145,6 +146,7 @@
 
   .cycycy-bot-icon .avatar-img {
     height: 30px;
+    width: 30px;
   }
 
   .toolbar-nav {

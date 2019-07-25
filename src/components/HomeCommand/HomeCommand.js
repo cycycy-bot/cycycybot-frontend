@@ -184,11 +184,6 @@ const HomeCommand = () => {
                               '!=setlogger disable',
                             ]}
                           />
-                          <CommandsContainer
-                            title="!=test"
-                            desc="Tests if the bot is running"
-                            usage="!=test"
-                          />
                           <h1>Mod</h1>
                           <CommandsContainer
                             title="Ban phrase"
