@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode';
 
 import Loading from '../Loading';
 

@@ -15,7 +15,8 @@ const Home = () => {
       .then(res => res.json())
       .then((length) => {
         setGuildLength(length);
-      });
+      })
+      .catch(console.log);
     getGuildLength();
   }, []);
 

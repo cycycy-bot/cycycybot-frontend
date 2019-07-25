@@ -47,7 +47,7 @@ const Mod = ({ server: { id, name } }) => {
       });
 
     fetchRoles();
-  }, [id]);
+  }, [id, token]);
 
   const handleChange = (e) => {
     setSelected(e.target.value);
@@ -150,7 +150,7 @@ const Mod = ({ server: { id, name } }) => {
                     >
                       {addMod => (
                         <button
-                          className="update"
+                          className="update useful"
                           onClick={() => {
                             if (selectedMod !== undefined) {
                               return addMod({

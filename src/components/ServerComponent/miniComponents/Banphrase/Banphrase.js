@@ -76,7 +76,7 @@ const Banphrase = ({ server: { id } }) => {
                     return (
                       <>
                         <button
-                          className="update"
+                          className="update useful"
                           onClick={showModal}
                         >
                             Add

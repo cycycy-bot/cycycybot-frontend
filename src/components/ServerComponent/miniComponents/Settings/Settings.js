@@ -40,7 +40,7 @@ const Settings = ({ server: { id, name } }) => {
         });
     };
     fetchChannels();
-  }, [id]);
+  }, [id, token]);
 
   const handleChannelChange = (e) => {
     console.log(e.target.value);
@@ -137,7 +137,7 @@ const Settings = ({ server: { id, name } }) => {
 
                     return (
                       <button
-                        className="update"
+                        className="update useful"
                         onClick={handleEnable}
                       >
                         Turn on logger

@@ -113,7 +113,7 @@ const Commands = ({ server: { id, name } }) => {
                 return (
                   <>
                     <button
-                      className="update"
+                      className="update useful"
                       onClick={showModal}
                     >
                       Add
@@ -122,7 +122,7 @@ const Commands = ({ server: { id, name } }) => {
                       show={isOpen}
                       close={showModal}
                       onSaveClick={() => onAddClick()}
-                      classN="update"
+                      classN="update useful"
                       btnName="Save"
                     >
                       {
