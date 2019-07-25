@@ -23,7 +23,8 @@ const Auth = {
         });
       console.log('%c[cycycy bot] => ', 'color:green;', 'Setting up user');
       const json = await response.json();
-      if (json.code === 0) {
+      console.log(json);
+      if (json.code === 0 || json.error) {
         this.states.isAuthenticated = false;
         return this.states.isAuthenticated;
       }

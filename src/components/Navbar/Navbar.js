@@ -18,6 +18,12 @@ const Navbar = () => {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const logout = () => {
+    auth.logout(() => {
+      window.location.replace('/');
+    });
+  };
+
   useEffect(() => {
     setTimeout(() => {
       auth.authenticate().then((res) => {
@@ -27,11 +33,6 @@ const Navbar = () => {
     }, 500);
   }, []);
 
-  const logout = () => {
-    auth.logout(() => {
-      window.location.replace('/');
-    });
-  };
 
   return (
     <header id="nav-bar" className="nav-container">
