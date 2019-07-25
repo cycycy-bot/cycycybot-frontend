@@ -29,7 +29,11 @@ const Home = () => {
           <h4>
             currently listening on
             {' '}
-            <CountUp end={guildLength} duration={1} className="counter" />
+            <CountUp
+              end={guildLength}
+              duration={1}
+              className="counter"
+            />
             {' '}
             servers
           </h4>

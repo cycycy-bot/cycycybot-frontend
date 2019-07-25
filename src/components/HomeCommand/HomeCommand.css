@@ -1,0 +1,76 @@
+.home-command-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.home-command-contents {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.command-category {
+  background: #2b2f33;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin: 0 2rem 1rem 0;
+  width: 30%;
+  min-width: 222px;
+  height: 250px;
+}
+
+.ccontainer-title h3 {
+  color: #7289da;
+}
+
+.command-main {
+  width: 50%;
+  min-width: 350px;
+}
+
+.ccontainer {
+  background: #2b2f33;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.ccontainer-main {
+  margin-top: 1rem;
+}
+
+.example {
+  margin-top: 1rem;
+}
+
+.example-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.colored {
+  color: #7289da;
+}
+
+@media screen and (max-width: 900px) {
+  .home-command-contents {
+    width: 90%;
+  }
+
+  .command-category {
+    width: 100%;
+    min-width: 0;
+    margin-right: 0;
+  }
+
+  .command-main {
+    width: 100%;
+    min-width: 0;
+  }
+
+}

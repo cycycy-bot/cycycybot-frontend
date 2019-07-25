@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import ServerComponent from './components/ServerComponent/ServerComponent';
 import Contact from './components/Contact';
+import HomeCommand from './components/HomeCommand';
 import Feature from './components/Features';
 import Footer from './components/Footer';
 
@@ -24,6 +25,7 @@ const App = () => (
         <Route path="/redirect" component={Redirects} />
         <Route path="/contact" component={Contact} />
         <Route path="/features" component={Feature} />
+        <Route path="/commands" component={HomeCommand} />
         <ProtectedRoute path="/dashboard/:serverId" component={ServerComponent} />
         <ProtectedRoute path="/dashboard" component={Dashboard} />
         <Route
