@@ -11,6 +11,8 @@ const Redirects = (({ location: { search } }) => {
 
   useEffect(() => {
     const fetchToken = () => fetch('https://api.cycycy.me/api/discord/callback', {
+    // dev fetch
+    // const fetchToken = () => fetch('http://localhost:5000/api/discord/callback', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
