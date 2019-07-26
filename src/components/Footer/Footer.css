@@ -47,6 +47,10 @@
   margin-top: 0.3rem;
 }
 
+.footer-bottom-content a:hover {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 900px) {
   .footer-main {
     width: 90%;

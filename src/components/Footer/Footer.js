@@ -5,6 +5,7 @@ import './Footer.css';
 
 const Footer = () => {
   const [commit, setCommit] = useState('');
+  const [commitURL, setURL] = useState('');
   const [commitDate, setCommitDate] = useState('');
 
   useEffect(() => {
@@ -16,15 +17,16 @@ const Footer = () => {
       .then((commitObj) => {
         const {
           sha,
+          html_url,
           commit: {
             committer: {
-              name,
               date,
             },
           },
         } = commitObj;
         const commitNum = sha.substring(0, 8);
         setCommit(commitNum);
+        setURL(html_url);
         setCommitDate(date);
       });
     fetchLastCommit();
@@ -80,12 +82,14 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <div className="footer-bottom-content">
+          <a href={commitURL} target="blank_">
           Branch master, latest commit(
-          {commit}
+            {commit}
           ) --
           (
-          {commitDate}
+            {commitDate}
           )
+          </a>
         </div>
       </div>
     </div>
