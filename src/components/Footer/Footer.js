@@ -25,7 +25,6 @@ const Footer = () => {
         } = commitObj;
         const commitNum = sha.substring(0, 8);
         setCommit(commitNum);
-        setCommitter(name);
         setCommitDate(date);
       });
     fetchLastCommit();
