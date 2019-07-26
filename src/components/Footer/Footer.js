@@ -5,7 +5,6 @@ import './Footer.css';
 
 const Footer = () => {
   const [commit, setCommit] = useState('');
-  const [committer, setCommitter] = useState('');
   const [commitDate, setCommitDate] = useState('');
 
   useEffect(() => {
@@ -84,10 +83,7 @@ const Footer = () => {
         <div className="footer-bottom-content">
           Branch master, latest commit(
           {commit}
-          ) -- Last commit by
-          {' '}
-          {committer}
-          {' '}
+          ) --
           (
           {commitDate}
           )
