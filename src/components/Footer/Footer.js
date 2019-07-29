@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Link from './Link';
+import Link from '../common/Link';
 
 import './Footer.css';
 
@@ -21,7 +21,13 @@ const Footer = () => {
       );
 
       const res = await data.json();
-      const { sha, html_url: htmlUrl, commit: { committer: { date } } } = res;
+      const {
+        sha,
+        html_url: htmlUrl,
+        commit: {
+          committer: { date },
+        },
+      } = res;
       const commitNum = sha.substring(0, 8);
 
       setCommit(commitNum);
@@ -41,21 +47,24 @@ const Footer = () => {
               to="https://discordapp.com/invite/jJA7QtK"
               className="footer-link"
               iconName="fab fa-discord footer-link-icon"
-              text="Official Discord Server"
-            />
+            >
+              Official Discord Server
+            </Link>
             <Link
               to="/contact"
               className="footer-link"
               iconName="fas fa-envelope footer-link-icon"
-              text="Contact"
-            />
+            >
+              Contact
+            </Link>
 
             <Link
               to="https://github.com/cycycy-bot/cycycy-bot/issues"
               className="footer-link"
               iconName="fas fa-exclamation-circle footer-link-icon"
-              text="Submit an Issue"
-            />
+            >
+              Submit an Issue
+            </Link>
           </div>
         </div>
         <div className="footer-content">
@@ -65,14 +74,16 @@ const Footer = () => {
               to="https://github.com/cycycy-bot/cycycy-bot"
               className="footer-link"
               iconName="fab fa-github footer-link-icon"
-              text="cycycy bot"
-            />
+            >
+              cycycy bot
+            </Link>
             <Link
               to="https://github.com/galoncyryll"
               className="footer-link"
               iconName="fab fa-github footer-link-icon"
-              text="Made by cycycy"
-            />
+            >
+              Made by cycycy
+            </Link>
           </div>
         </div>
       </div>
