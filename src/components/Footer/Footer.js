@@ -11,27 +11,23 @@ const Footer = () => {
   const [commitDate, setCommitDate] = useState('');
 
   useEffect(() => {
-    const fetchLastCommit = () => fetch(
-      'https://api.github.com/repos/cycycy-bot/cycycy-bot/commits/master',
-      {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
-      .then(res => res.json())
-      .then(commitObj => {
-        const {
-          sha,
-          html_url,
-          commit: {
-            committer: { date },
-          },
-        } = commitObj;
-        const commitNum = sha.substring(0, 8);
-        setCommit(commitNum);
-        setURL(html_url);
-        setCommitDate(date);
-      });
+    const fetchLastCommit = async () => {
+      const data = await fetch(
+        'https://api.github.com/repos/cycycy-bot/cycycy-bot/commits/master',
+        {
+          method: 'get',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+
+      const res = await data.json();
+      const { sha, html_url: htmlUrl, commit: { committer: { date } } } = res;
+      const commitNum = sha.substring(0, 8);
+
+      setCommit(commitNum);
+      setURL(htmlUrl);
+      setCommitDate(date);
+    };
     fetchLastCommit();
   }, []);
 
@@ -83,12 +79,9 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-bottom-content">
           <a href={commitURL} className="footer-commit" target="blank_">
-            Branch master, latest commit(
-            {commit}
-) -- (
-                        {commitDate}
-)
-                              </a>
+            {/* eslint-disable react/jsx-one-expression-per-line */}
+            Branch master, latest commit ({commit}) -- ({commitDate})
+          </a>
         </div>
       </div>
     </div>
