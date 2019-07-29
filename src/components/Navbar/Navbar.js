@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Mutation, Query } from 'react-apollo';
+
+import Link from '../common/Link';
 import auth from '../../auth';
 
 import './Navbar.css';
+import { GET_DROP_DOWN, SET_DROP_DOWN } from '../../localQueries';
+
+import Loader from './Loader';
 import icon from './img/peepoNaM.png';
 
 // queries
-import {
-  GET_DROP_DOWN,
-  SET_DROP_DOWN,
-} from '../../localQueries';
 
-const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=https%3A%2F%2Fbot.cycycy.me%2Fredirect&response_type=code&scope=identify%20guilds';
+const url =
+  'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=https%3A%2F%2Fbot.cycycy.me%2Fredirect&response_type=code&scope=identify%20guilds';
 // dev url
 // const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=identify%20guilds';
-
 
 const Navbar = () => {
   const [user, setUser] = useState();
@@ -29,13 +30,12 @@ const Navbar = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      auth.authenticate().then((res) => {
+      auth.authenticate().then(res => {
         setUser(res.user);
         setIsLoading(false);
       });
     }, 500);
   }, []);
-
 
   return (
     <header id="nav-bar" className="nav-container">
@@ -47,88 +47,95 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="cycycy-bot-icon ml-2">
-            <NavLink exact activeClassName="navactive" to="/features">
+            <Link
+              className="header-link"
+              activeClassName="navactive"
+              to="/features"
+            >
               Features
-            </NavLink>
+            </Link>
           </div>
           <div className="cycycy-bot-icon ml-2">
-            <NavLink activeClassName="navactive" to="/commands">
+            <Link
+              className="header-link"
+              activeClassName="navactive"
+              to="/commands"
+            >
               Commands
-            </NavLink>
+            </Link>
           </div>
           <div className="spacer" />
           <div className="toolbar-nav-items">
-            {
-              isLoading
-                ? (
-                  <div className="lds-ellipsis">
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                  </div>
-                )
-                : (
-                  <>
-                    {
-                      user !== undefined
-                        ? (
-                          <Query query={GET_DROP_DOWN}>
-                            {({ data }) => (
-                              <Mutation mutation={SET_DROP_DOWN}>
-                                {setDropDown => (
-                                  <div
-                                    onClick={() => {
-                                      setDropDown({
-                                        variables: {
-                                          isOpen: !data.dropDownOpen.isOpen,
-                                        },
-                                      });
-                                    }}
-                                    className="toolbar-dropdown"
-                                    role="button"
-                                  >
-                                    <div className="cycycy-bot-icon">
-                                      {
-                                        user.avatar
-                                          ? <img className="avatar-img" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} alt="avatar" />
-                                          : <div className="avatar-img">{user.username.charAt(0).toUpperCase()}</div>
-                                      }
-                                      <span className="user-tag">
-                                        {user.username}
-                                        {' '}
-                                        #
-                                        {user.discriminator}
-                                        <i className="fas fa-angle-down" />
-                                      </span>
-                                    </div>
-                                    <div className={data.dropDownOpen.isOpen ? 'dropdown-content active' : 'dropdown-content'}>
-                                      <div className="dropdown-item"><NavLink to="/dashboard">Servers</NavLink></div>
-                                      <div className="dropdown-item">
-                                        <button
-                                          onClick={logout}
-                                        >
-                                      Logout
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                )}
-                              </Mutation>
-                            )}
-                          </Query>
-                        )
-                        : (
-                          <a href={url} className="login-button">
-                            <i className="fab fa-discord" />
-                            {' '}
-                            Login
-                          </a>
-                        )
-                    }
-                  </>
-                )
-            }
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                {user !== undefined ? (
+                  <Query query={GET_DROP_DOWN}>
+                    {({ data }) => (
+                      <Mutation mutation={SET_DROP_DOWN}>
+                        {setDropDown => (
+                          <div
+                            onClick={() => {
+                              setDropDown({
+                                variables: {
+                                  isOpen: !data.dropDownOpen.isOpen,
+                                },
+                              });
+                            }}
+                            className="toolbar-dropdown"
+                            role="button"
+                          >
+                            <div className="cycycy-bot-icon">
+                              {user.avatar ? (
+                                <img
+                                  className="avatar-img"
+                                  src={`https://cdn.discordapp.com/avatars/${
+                                    user.id
+                                  }/${user.avatar}.png`}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="avatar-img">
+                                  {user.username.charAt(0).toUpperCase()}
+                                </div>
+                              )}
+                              <span className="user-tag">
+                                {user.username}
+{' '}
+#
+{user.discriminator}
+                                <i className="fas fa-angle-down" />
+                              </span>
+                            </div>
+                            <div
+                              className={
+                                data.dropDownOpen.isOpen
+                                  ? 'dropdown-content active'
+                                  : 'dropdown-content'
+                              }
+                            >
+                              <div className="dropdown-item">
+                                <Link to="/dashboard" text="Servers" />
+                              </div>
+                              <div className="dropdown-item">
+                                <button onClick={logout}>Logout</button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </Mutation>
+                    )}
+                  </Query>
+                ) : (
+                  <a href={url} className="login-button">
+                    <i className="fab fa-discord" />
+{' '}
+Login
+</a>
+                )}
+              </>
+            )}
             {/*  */}
           </div>
         </div>
@@ -136,6 +143,5 @@ const Navbar = () => {
     </header>
   );
 };
-
 
 export default Navbar;

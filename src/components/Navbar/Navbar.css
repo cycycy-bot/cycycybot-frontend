@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.header-link {
+  border-bottom: 3px solid transparent;
+}
+
 .toolbar .toolbar-nav .cycycy-bot-icon {
   display: flex;
   justify-content: center;
