@@ -24,6 +24,7 @@ const Home = () => {
     <div className="home-container">
       <div className="home-contents">
         <div className="home-main">
+          <div id="container-1648017ac06b3337e878fad7c947534b" style={{ display: 'none' }} />
           <h1>cycycy bot is a simple multipurpose, moderating, meme bot for Discord Servers!</h1>
 
           <br />
