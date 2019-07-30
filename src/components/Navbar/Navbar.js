@@ -13,8 +13,7 @@ import icon from './img/peepoNaM.png';
 
 // queries
 
-const url =
-  'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=https%3A%2F%2Fbot.cycycy.me%2Fredirect&response_type=code&scope=identify%20guilds';
+const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=https%3A%2F%2Fbot.cycycy.me%2Fredirect&response_type=code&scope=identify%20guilds';
 // dev url
 // const url = 'https://discordapp.com/api/oauth2/authorize?client_id=530305194131456000&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=identify%20guilds';
 
@@ -30,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      auth.authenticate().then(res => {
+      auth.authenticate().then((res) => {
         setUser(res.user);
         setIsLoading(false);
       });
@@ -102,9 +101,9 @@ const Navbar = () => {
                               )}
                               <span className="user-tag">
                                 {user.username}
-{' '}
-#
-{user.discriminator}
+                                {' '}
+                                  #
+                                {user.discriminator}
                                 <i className="fas fa-angle-down" />
                               </span>
                             </div>
@@ -116,7 +115,7 @@ const Navbar = () => {
                               }
                             >
                               <div className="dropdown-item">
-                                <Link to="/dashboard" text="Servers" />
+                                <Link to="/dashboard" text="Servers">Servers</Link>
                               </div>
                               <div className="dropdown-item">
                                 <button onClick={logout}>Logout</button>
@@ -130,9 +129,9 @@ const Navbar = () => {
                 ) : (
                   <a href={url} className="login-button">
                     <i className="fab fa-discord" />
-{' '}
+                    {' '}
 Login
-</a>
+                  </a>
                 )}
               </>
             )}
