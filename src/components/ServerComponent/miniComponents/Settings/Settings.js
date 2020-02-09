@@ -151,7 +151,7 @@ const Settings = ({ server: { id, name } }) => {
         }
         <QueryComp query={GET_LOGGER} variables={{ serverID: id }}>
           {({ logger }) => {
-            if (logger.isEnabled === 'enable') {
+            if (logger && logger.isEnabled === 'enable') {
               setToggle(true);
             } else {
               setToggle(false);

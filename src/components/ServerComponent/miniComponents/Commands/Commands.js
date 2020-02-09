@@ -166,7 +166,7 @@ const Commands = ({ server: { id, name } }) => {
           <QueryComp query={GET_COMMANDS} variables={{ serverID: id }}>
             {({ customcommands }) => customcommands.map(command => (
               <div className="commando" key={command.id}>
-                <p>{`!=${command.commandName}`}</p>
+                <p>{`$${command.commandName}`}</p>
                 <div className="spacer" />
                 <div className="command-buttons">
                   {/* EDIT MODAL */}
@@ -205,7 +205,7 @@ const Commands = ({ server: { id, name } }) => {
                             btnName="Save"
                             onSaveClick={() => onEditCmd(textAreaRes[command.id])}
                           >
-                            <h2>{`!=${command.commandName}`}</h2>
+                            <h2>{`$${command.commandName}`}</h2>
                             <h5>Edit Command Response</h5>
                             <div className="textarea-container">
                               <textarea
