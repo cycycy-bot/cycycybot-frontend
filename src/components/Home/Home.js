@@ -23,8 +23,8 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="home-contents">
-        <h1 style={{ color: 'red' }}>Website API under reconstruction!!!</h1>
         <div className="home-main">
+          <h1 style={{ color: 'red' }}>Website API under reconstruction!!!</h1>
           <div id="container-1648017ac06b3337e878fad7c947534b" style={{ display: 'none' }} />
           <h1>cycycy bot is a simple multipurpose, moderating, meme bot for Discord Servers!</h1>
 
