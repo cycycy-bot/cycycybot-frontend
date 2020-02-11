@@ -22,6 +22,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      <h1 color="red">Website API under reconstruction!!!</h1>
       <div className="home-contents">
         <div className="home-main">
           <div id="container-1648017ac06b3337e878fad7c947534b" style={{ display: 'none' }} />
