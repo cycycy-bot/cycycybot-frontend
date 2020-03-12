@@ -32,6 +32,11 @@ const Dashboard = ({ match: { path } }) => {
     fetchServers();
   }, [token]);
 
+  const addDefaultSrc = (ev, id, icon) => {
+    const e = ev;
+    e.target.src = `https://cdn.discordapp.com/icons/${id}/${icon}.png`;
+  };
+
   return (
     <div className="server-container">
 
@@ -54,7 +59,7 @@ const Dashboard = ({ match: { path } }) => {
                             <div className="server">
                               {
                                 icon
-                                  ? <img className="server-img" src={`https://cdn.discordapp.com/icons/${id}/${icon}.png`} alt="avatar" />
+                                  ? <img onError={ev => addDefaultSrc(ev, id, icon)} className="server-img" src={`https://cdn.discordapp.com/icons/${id}/${icon}.gif`} alt="avatar" />
                                   : <div className="server-img">{name.charAt(0)}</div>
                               }
                               <span>{name}</span>
