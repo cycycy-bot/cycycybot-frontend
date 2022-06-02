@@ -1,5 +1,5 @@
 # Front end dashboard for cycycy bot
-dashboard UI to control discord bot ([cycycy bot](https://github.com/galoncyryll/cycycy-bot))
+dashboard UI to control discord bot
 
 ## Stack used
 * HTML5 
